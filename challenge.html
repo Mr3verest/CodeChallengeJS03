@@ -6,15 +6,17 @@
 <body>
 
 
-<button onclick="add(price1)">Add price1 55</button> 
-<button onclick="add(price2)">Add price2 20</button> 
-<button onclick="add(price3)">Add price3 67</button> 
-<button onclick="display()">Display</button> 
-<div id="display"></div>
-
-
-
-
+	<button onclick="add(price1)">Add Item1 55</button> 
+	<button onclick="add(price2)">Add Item2 20</button> 
+	<button onclick="add(price3)">Add Item3 67</button> 
+	<br>
+	<button onclick="remove(price1)">Remove Item1 55</button> 
+	<button onclick="remove(price2)">Remove Item2 20</button> 
+	<button onclick="remove(price3)">Remove Item3 67</button> 
+	<br>
+	
+	<button onclick="display()">Display</button> 
+	<div id="display"></div>
 
 
 <script type="text/javascript">
@@ -29,15 +31,40 @@
 	var countPrice3= 0;
 
 	var cart= new Array();
-	x=0;
+	
 
 	function add(price){
-		
-		
-		console.log(cart[x] +" added item at index " + x);
-		x++
-		
+		if(price== 55){
+			countPrice1++;
+			console.log("added 1 item price1 to cart, total: " +countPrice1);
+		}else if(price== 20){
+			countPrice2++;
+			console.log("added 1 item price2 to cart, total: " +countPrice2);
+		}else if(price== 67){
+			countPrice3++;
+			console.log("added 1 item price3 to cart, total: " +countPrice3);
+		}	
 	}
+	function remove(price){
+		if(price== 55){
+			countPrice1--;
+			if (countPrice1<=0){countPrice1=0;}
+			console.log("removed 1 item price1 from cart, total: " +countPrice1);
+		}else if(price== 20){
+			countPrice2--;
+			if (countPrice2<=0){countPrice2=0;}
+			console.log("removed 1 item price2 from cart, total: " +countPrice2);
+		}else if(price== 67){
+			countPrice3--;
+			if (countPrice3<=0){countPrice3=0;}
+			console.log("removed 1 item price3 from cart, total: " +countPrice3);
+		}	
+	}
+
+
+
+
+
 
 	function display(){
 		for(i=0; i<cart.length; i++){
