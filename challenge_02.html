@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pascal Tonsern CodeChallenge</title>
+</head>
+<body>
+
+
+	<button onclick="add(0)">Add Item1 55€</button> 
+	<button onclick="add(1)">Add Item2 20€</button> 
+	<button onclick="add(2)">Add Item3 67€</button> 
+	<button onclick="add(3)">Add Item4 89€</button> 
+	<br>
+	<button onclick="remove(0)">Remove Item1 55€</button> 
+	<button onclick="remove(1)">Remove Item2 20€</button> 
+	<button onclick="remove(2)">Remove Item3 67€</button> 
+	<button onclick="remove(3)">Remove Item4 89€</button> 
+	<br>
+
+	<button onclick="display()" id="cartView">View Cart</button> 
+	<div id="cart" style="border: solid 1px blue; width: 200px; display:none">
+		<div id="item1"></div>	
+		<div id="item2"></div>	
+		<div id="item3"></div>
+		<div id="item4"></div>
+		<div id="subTotal"></div>
+		<div id="shipping"></div>
+		<div id="tax"></div>
+		<div id="discount"></div>
+		<div id="total"></div>
+	</div>
+
+
+<script type="text/javascript">
+	
+
+	var price= [55,20,67,89];
+	var countPrice= [0,0,0,0];
+	var itemtotal= [0,0,0,0];
+	var itemId= ["item1", "item2", "item3", "item4"];
+	var subTotal= 0;
+	var shipping= 0;
+	var tax= 0;
+	var discount= 0;
+	var total = 0;
+
+
+	reCalc();
+	
+
+	function add(x){
+		countPrice[x]++;
+		reCalc();
+	}
+	function remove(x){
+		countPrice[x]--;
+		if (countPrice[x]<=0){countPrice[x]=0;}
+		reCalc();
+	}
+
+// ___________SHOPPING CART PRICES_____________
+	function reCalc(){
+	// ___________TOTAL FOR EACH ITEM___________	
+		for (i=0; i<itemtotal.length; i++){
+			itemtotal[i]= countPrice[i]*price[i];
+		}
+		for (i=0; i<itemId.length; i++){
+			var str= "Item"+(i+1)+" "+ price[i]+"€ ____"+ countPrice[i]+"x "+ itemtotal[i]+"€";
+			document.getElementById(itemId[i]).innerHTML = str;
+		}
+
+	// ___________SUBTOTAL PRICE____________
+		subTotal= 0;
+		for (i=0; i<itemtotal.length; i++){
+			subTotal+= itemtotal[i];
+		} 
+		document.getElementById("subTotal").innerHTML = "Subtotal: _______" +subTotal+"€";
+
+	// ___________SHIPPING PRICE____________
+		shipping= 0;
+		for (i=0; i<price.length; i++){
+			if (price[i]>80) {
+				shipping += (6*countPrice[i]);
+			}else {
+				shipping += (9*countPrice[i]);	
+			}
+		}
+		document.getElementById("shipping").innerHTML = "Shipping: ______" +shipping+"€";
+
+	// ___________TAX PRICE____________
+		tax= parseInt((subTotal+shipping)*0.22);
+		document.getElementById("tax").innerHTML = "Tax: __________" +tax+"€";
+
+	// ___________DISCOUNT PRICE____________
+		filler= subTotal+shipping+tax;
+		if (filler<40){
+			document.getElementById("discount").innerHTML = "Discount 0%: ___" +discount+"€";
+		}else if (filler<100){
+			discount = parseInt(filler*0.07);
+			document.getElementById("discount").innerHTML = "Discount 7%: ___" +discount+"€";
+		}else if (filler<200){
+			discount = parseInt(filler*0.12);
+			document.getElementById("discount").innerHTML = "Discount 12%: ___" +discount+"€";
+		}else {
+			discount = parseInt(filler*0.15);
+			document.getElementById("discount").innerHTML = "Discount 15%: ___" +discount+"€";
+		}
+
+	// ___________TOTAL PRICE____________
+		total= subTotal+ shipping+ tax- discount;
+		document.getElementById("total").innerHTML = "Total: _________" +total+"€";
+	}
+
+
+	function display(){
+		var toggleView = document.getElementById("cart").style.display;
+			if (toggleView == "none"){
+				document.getElementById("cart").style.display="block";
+			}else {
+				document.getElementById("cart").style.display="none";
+			}
+		var toggleButton = document.getElementById("cartView").innerHTML;
+			if (toggleButton == "View Cart"){
+				document.getElementById("cartView").innerHTML="Hide Cart";
+			}else {
+				document.getElementById("cartView").innerHTML="View Cart";
+			}
+	}
+
+</script>
+</body>
+</html>
