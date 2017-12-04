@@ -6,17 +6,22 @@
 <body>
 
 
-	<button onclick="add(price1)">Add Item1 55</button> 
-	<button onclick="add(price2)">Add Item2 20</button> 
-	<button onclick="add(price3)">Add Item3 67</button> 
+	<button onclick="add(price1)">Add Item1 55€</button> 
+	<button onclick="add(price2)">Add Item2 20€</button> 
+	<button onclick="add(price3)">Add Item3 67€</button> 
 	<br>
-	<button onclick="remove(price1)">Remove Item1 55</button> 
-	<button onclick="remove(price2)">Remove Item2 20</button> 
-	<button onclick="remove(price3)">Remove Item3 67</button> 
+	<button onclick="remove(price1)">Remove Item1 55€</button> 
+	<button onclick="remove(price2)">Remove Item2 20€</button> 
+	<button onclick="remove(price3)">Remove Item3 67€</button> 
 	<br>
-	
+
 	<button onclick="display()">Display</button> 
-	<div id="display"></div>
+	<div id="display" style="border: solid 1px blue; width: 200px; display:none">
+		<div id="item1"></div>	
+		<div id="item2"></div>	
+		<div id="item3"></div>
+		<div id="subTotal"></div>
+	</div>
 
 
 <script type="text/javascript">
@@ -34,42 +39,49 @@
 	
 
 	function add(price){
-		if(price== 55){
+		if(price== price1){
 			countPrice1++;
-			console.log("added 1 item price1 to cart, total: " +countPrice1);
-		}else if(price== 20){
+			console.log("added Item1 to cart, total: " +countPrice1);
+		}else if(price== price2){
 			countPrice2++;
-			console.log("added 1 item price2 to cart, total: " +countPrice2);
-		}else if(price== 67){
+			console.log("added Item2 to cart, total: " +countPrice2);
+		}else if(price== price3){
 			countPrice3++;
-			console.log("added 1 item price3 to cart, total: " +countPrice3);
+			console.log("added Item3 to cart, total: " +countPrice3);
 		}	
 	}
 	function remove(price){
-		if(price== 55){
+		if(price== price1){
 			countPrice1--;
 			if (countPrice1<=0){countPrice1=0;}
-			console.log("removed 1 item price1 from cart, total: " +countPrice1);
-		}else if(price== 20){
+			console.log("removed Item1 from cart, total: " +countPrice1);
+		}else if(price== price2){
 			countPrice2--;
 			if (countPrice2<=0){countPrice2=0;}
-			console.log("removed 1 item price2 from cart, total: " +countPrice2);
-		}else if(price== 67){
+			console.log("removed Item2 from cart, total: " +countPrice2);
+		}else if(price== price3){
 			countPrice3--;
 			if (countPrice3<=0){countPrice3=0;}
-			console.log("removed 1 item price3 from cart, total: " +countPrice3);
+			console.log("removed Item3 from cart, total: " +countPrice3);
 		}	
 	}
 
-
-
-
-
-
 	function display(){
-		for(i=0; i<cart.length; i++){
-			document.getElementById("display").innerHTML += "Element "+i+ " = " +cart[i] +"<br>";
-		}
+		total1 =countPrice1*price1;
+		total2 =countPrice2*price2;
+		total3 =countPrice3*price3;
+
+		var toggle = document.getElementById("display").style.display;
+			if (toggle == "none"){
+				document.getElementById("display").style.display="block";
+			}else {
+				document.getElementById("display").style.display="none";
+			}
+
+		document.getElementById("item1").innerHTML = "Item1 55€ ____"+ countPrice1+"x " +total1+"€";
+		document.getElementById("item2").innerHTML = "Item2 20€ ____"+ countPrice2+"x " +total2+"€";
+		document.getElementById("item3").innerHTML = "Item3 67€ ____"+ countPrice3+"x " +total3+"€";
+		document.getElementById("subTotal").innerHTML = "Subtotal: ____" +(total1+total2+total3)+"€";
 
 
 
