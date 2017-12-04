@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>challenge</title>
+</head>
+<body>
+
+
+<button onclick="add(price1)">Add price1 55</button> 
+<button onclick="add(price2)">Add price2 20</button> 
+<button onclick="add(price3)">Add price3 67</button> 
+<button onclick="display()">Display</button> 
+<div id="display"></div>
+
+
+
+
+
+
+<script type="text/javascript">
+	
+
+	var price1= 55;
+	var price2= 20;
+	var price3= 67;
+
+	var countPrice1= 0;
+	var countPrice2= 0;
+	var countPrice3= 0;
+
+	var cart= new Array();
+	x=0;
+
+	function add(price){
+		
+		
+		console.log(cart[x] +" added item at index " + x);
+		x++
+		
+	}
+
+	function display(){
+		for(i=0; i<cart.length; i++){
+			document.getElementById("display").innerHTML += "Element "+i+ " = " +cart[i] +"<br>";
+		}
+
+
+
+	}
+
+</script>
+</body>
+</html>
