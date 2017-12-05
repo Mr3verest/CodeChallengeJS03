@@ -18,11 +18,33 @@
 	<br>
 
 	<button onclick="display()" id="cartView">View Cart</button> 
-	<div id="cart" style="border: solid 1px blue; width: 200px; display:none">
-		<div id="item1"></div>	
-		<div id="item2"></div>	
-		<div id="item3"></div>
-		<div id="item4"></div>
+	<div id="cart" style="border: solid 1px blue; width: 250px; display:none">
+		
+		<div id="itemCon1" style="display:none;">
+			<span id="item1"></span>
+			<button onclick="add(0)">+</button>
+			<button onclick="remove(0)">-</button>
+			<button onclick="removeAll(0)">x</button>
+		</div>
+		<div id="itemCon2" style="display:none">
+			<span id="item2"></span>
+			<button onclick="add(1)">+</button>
+			<button onclick="remove(1)">-</button>
+			<button onclick="removeAll(1)">x</button>
+		</div>
+		<div id="itemCon3" style="display:none">
+			<span id="item3"></span>
+			<button onclick="add(2)">+</button>
+			<button onclick="remove(2)">-</button>
+			<button onclick="removeAll(2)">x</button>
+		</div>
+		<div id="itemCon4" style="display:none">
+			<span id="item4"></span>
+			<button onclick="add(3)">+</button>
+			<button onclick="remove(3)">-</button>
+			<button onclick="removeAll(3)">x</button>
+		</div>
+
 		<div id="subTotal"></div>
 		<div id="shipping"></div>
 		<div id="tax"></div>
@@ -38,6 +60,7 @@
 	var countPrice= [0,0,0,0];
 	var itemtotal= [0,0,0,0];
 	var itemId= ["item1", "item2", "item3", "item4"];
+	var itemConId= ["itemCon1", "itemCon2", "itemCon3", "itemCon4"];
 	var subTotal= 0;
 	var shipping= 0;
 	var tax= 0;
@@ -57,6 +80,10 @@
 		if (countPrice[x]<=0){countPrice[x]=0;}
 		reCalc();
 	}
+	function removeAll(x){
+		countPrice[x]= 0;
+		reCalc();
+	}
 
 // ___________SHOPPING CART PRICES_____________
 	function reCalc(){
@@ -67,6 +94,7 @@
 		for (i=0; i<itemId.length; i++){
 			var str= "Item"+(i+1)+" "+ price[i]+"€ ____"+ countPrice[i]+"x "+ itemtotal[i]+"€";
 			document.getElementById(itemId[i]).innerHTML = str;
+			itemDisplay(i);
 		}
 
 	// ___________SUBTOTAL PRICE____________
@@ -92,7 +120,7 @@
 		document.getElementById("tax").innerHTML = "Tax: __________" +tax+"€";
 
 	// ___________DISCOUNT PRICE____________
-		filler= subTotal+shipping+tax;
+		var filler= subTotal+shipping+tax;
 		if (filler<40){
 			document.getElementById("discount").innerHTML = "Discount 0%: ___" +discount+"€";
 		}else if (filler<100){
@@ -111,7 +139,16 @@
 		document.getElementById("total").innerHTML = "Total: _________" +total+"€";
 	}
 
+// _______	SHOW ITEMS  (gets called from "reCalc" total for each item)__________
+	function itemDisplay(x){
+		if (countPrice[x]<= 0){
+			document.getElementById(itemConId[x]).style.display="none";
+		}else {
+			document.getElementById(itemConId[x]).style.display="block";
+		}
+	}
 
+// ________SHOW CART______
 	function display(){
 		var toggleView = document.getElementById("cart").style.display;
 			if (toggleView == "none"){
