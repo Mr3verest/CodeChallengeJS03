@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Challenge Day 3</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav>
+            <article class="nav_1">
+                <div>
+                    <p>choose theme</p>
+                </div>
+                <div>
+                    <p>sing in</p>
+                    <p>create new account</p>
+                </div>
+            </article>
+            <hr>
+            <article class="nav_2">
+                <ul>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">eyewear</a></li>
+                    <li><a href="#">shoes</a></li>
+                    <li><a href="#">jewelry</a></li>
+                    <li><a href="#">vip</a></li>
+                </ul>
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <ul id="myUl">
+                            <li id="itemCon1">
+                                <div class="flexCon itemCon">
+                                    <img src="300px-BLUNO_side.jpg" alt="">
+                                    <span id="itemName1"></span>
+                                    <span id="item1"></span>
+                                    <button onclick="add(0)">+</button>
+                                    <button onclick="remove(0)">-</button>
+                                    <button onclick="removeItem(0)">x</button>
+                                </div>
+                            </li>
+                            <li id="itemCon2">
+                                <div class="flexCon itemCon">
+                                    <img src="chanel-cc-.jpeg" alt="">
+                                    <span id="itemName2"></span>
+                                    <span id="item2"></span>
+                                    <button onclick="add(1)">+</button>
+                                    <button onclick="remove(1)">-</button>
+                                    <button onclick="removeItem(1)">x</button>
+                                </div>
+                            </li>
+                            <li id="itemCon3">
+                                <div class="flexCon itemCon">
+                                    <img src="engelsrufer-schmuck.jpg" alt="">
+                                    <span id="itemName3"></span>
+                                    <span id="item3"></span>
+                                    <button onclick="add(2)">+</button>
+                                    <button onclick="remove(2)">-</button>
+                                    <button onclick="removeItem(2)">x</button>
+                                </div>
+                            </li>
+                            <li id="itemCon4">
+                                <div class="flexCon itemCon">
+                                    <img src="gmk-collection-armreif_87229734.jpg" alt="">
+                                    <span id="itemName4"></span>
+                                    <span id="item4"></span>
+                                    <button onclick="add(3)">+</button>
+                                    <button onclick="remove(3)">-</button>
+                                    <button onclick="removeItem(3)">x</button>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div>
+                            <p>subtotal: <span id="subTotal"></span></p>
+                            <p>shipping: <span id="shipping"></span></p>
+                            <p>tax: <span id="tax"></span></p>
+                            <p>discount: <span id="discount"></span></p>
+                            <p>total: <span id="total"></span></p>
+                            <div>
+                                <button class="dropbtn">Checkout</button>
+                                <button class="dropbtn" onclick="removeAll()">Remove Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </nav>
+        
+        <header>
+            <center>featured products</center>
+        </header>
+        
+        <section>
+            <article>
+                <img src="300px-BLUNO_side.jpg" alt="">
+                <h4>....</h4>
+                <p>€ 55</p>
+                <button class="dropbtn" onclick="add(0)">Add to cart</button>
+            </article>
+            <article>
+                <img src="chanel-cc-.jpeg" alt="">
+                <h4>....</h4>
+                <p>€ 55</p>
+                <button class="dropbtn" onclick="add(1)">Add to cart</button>
+            </article>
+            <article>
+                <img src="engelsrufer-schmuck.jpg" alt="">
+                <h4>....</h4>
+                <p>€ 55</p>
+                <button class="dropbtn" onclick="add(2)">Add to cart</button>
+            </article>
+            <article>
+                <img src="gmk-collection-armreif_87229734.jpg" alt="">
+                <h4>....</h4>
+                <p>€ 55</p>
+                <button class="dropbtn" onclick="add(3)">Add to cart</button>
+            </article>
+        </section>
+        
+        <footer>
+            <p>&copy; Copyright  Moaz Sabri & Pascal Tonsern</p>
+        </footer>
+        
+        <script src="js.js"></script>
+    </body>
+</html>
