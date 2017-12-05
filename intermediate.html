@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>intermediate</title>
+</head>
+<body>
+
+
+<button onclick="classAvg(grades)">calculate classgrade</button>
+<div id="classGrades">initial text</div>
+<button onclick="fizzBuzz()">FizzBuzz!</button>
+<div id="fizzBuzz"></div>
+
+<form id="myForm"><input type="text" id="box"> </form>
+<button onclick="add()">Add</button> 
+<button onclick="display()">Display</button> 
+<div id="display"></div>
+
+
+
+<script type="text/javascript">
+	var grades= [76, 85, 65, 93, 81];
+
+	function classAvg(array){
+		result =0;
+		for (i=0; i < array.length; i++){
+			result += array[i];
+			console.log(result);
+		}
+		result/= array.length;
+
+		switch (true) {
+			case result<60:
+				document.getElementById("classGrades").innerHTML=result +" F";
+				break;
+			case result<70:
+				document.getElementById("classGrades").innerHTML=result +" D";
+				break;
+			case result<80:
+				document.getElementById("classGrades").innerHTML=result +" C";
+				break;
+			case result<90:
+				document.getElementById("classGrades").innerHTML=result +" B";
+				break;
+			case result<100:
+				document.getElementById("classGrades").innerHTML=result +" A";
+				break;
+		}
+	}
+
+
+	function fizzBuzz(){
+		for (i=1; i<= 100; i++ ){
+			if(i%3 == 0 && i%5 == 0){
+				document.getElementById("fizzBuzz").innerHTML += "FizzBuzz <br>";
+			}else if(i%5 == 0){
+				document.getElementById("fizzBuzz").innerHTML += "Buzz <br>";
+			}else if(i%3 == 0){
+				document.getElementById("fizzBuzz").innerHTML += "Fizz <br>";
+			}else {
+				document.getElementById("fizzBuzz").innerHTML +=  i +"<br>";
+			}
+
+
+		}
+	}
+
+
+
+
+	var basket= new Array();
+	x=0;
+
+	function add(){
+		filler= document.getElementById("box").value;
+		filler= String(filler);
+		basket.push(filler);
+		alert(basket[x] +" added at index " + x);
+		x++
+		filler = document.getElementById("myForm");
+		filler.reset();
+	}
+
+	function display(){
+		for(i=0; i<basket.length; i++){
+			document.getElementById("display").innerHTML += "Element "+i+ " = " +basket[i] +"<br>";
+		}
+
+
+
+	}
+
+
+
+</script>
+</body>
+</html>

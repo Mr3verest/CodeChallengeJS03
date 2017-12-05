@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>basic 01</title>
+</head>
+<body>
+
+<button onclick="myFunction2()">Generate Temperature</button>
+<div id="demo">initial text</div>
+<button onclick="highestVal(Numbers)">Get highest Number</button>
+<div id="num">initial text</div>
+<button onclick="multiply(multiNumbers)">Multiply!</button>
+<div id="result">initial text</div>
+
+<p>Click the button to convert the string to uppercase letters.</p>
+<button onclick="myFunction()">Try it</button>
+<p id="upper">initial text</p>
+
+<script type="text/javascript">
+	
+	function myFunction2(){
+		temp = parseInt((Math.random()*32) -6);
+		console.log(temp);
+		if (temp < 10){
+			document.getElementById("demo").innerHTML="The weather is cold";
+		}else {
+			document.getElementById("demo").innerHTML="The weather is moderate";
+		}
+	}
+
+
+
+	var Numbers= [4, 6, 2, 9, 10, 5, -2];
+	function highestVal(array){
+		array.sort(function(a,b){return a-b});
+		document.getElementById("num").innerHTML=array[array.length-1];
+	}
+
+
+	var multiNumbers= [9, 3, 6, 2, 4];
+	function multiply(array){
+		result =1;
+		for (i=0; i < array.length; i++){
+			result *= array[i];
+			console.log(result);
+		}
+		document.getElementById("result").innerHTML=result;
+	}
+
+
+
+	function myFunction() {
+	    var str = "hello world!";
+	    array= str.split(' ');
+	   	var string ="";
+
+	    for (i=0; i< array.length; i++){
+	    	var res = array[i].charAt(0).toUpperCase();
+	   		res += array[i].substring(1);
+	   		string += res +" ";
+	    }
+	   
+	    document.getElementById("upper").innerHTML = string;
+	}
+
+
+
+</script>
+</body>
+</html>
