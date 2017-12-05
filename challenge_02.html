@@ -71,40 +71,38 @@
 	reCalc();
 	
 
-	function add(x){
+	function add(x){			//add 1 item to cart
 		countPrice[x]++;
 		reCalc();
 	}
-	function remove(x){
+	function remove(x){			//remove 1 item cart
 		countPrice[x]--;
 		if (countPrice[x]<=0){countPrice[x]=0;}
 		reCalc();
 	}
-	function removeAll(x){
+	function removeAll(x){		//delete the whole item from cart
 		countPrice[x]= 0;
 		reCalc();
 	}
 
 // ___________SHOPPING CART PRICES_____________
 	function reCalc(){
-	// ___________TOTAL FOR EACH ITEM___________	
+	// ___________TOTAL FOR EACH ITEM calculate and print + call "itemDisplay"___________	
 		for (i=0; i<itemtotal.length; i++){
 			itemtotal[i]= countPrice[i]*price[i];
-		}
-		for (i=0; i<itemId.length; i++){
 			var str= "Item"+(i+1)+" "+ price[i]+"€ ____"+ countPrice[i]+"x "+ itemtotal[i]+"€";
 			document.getElementById(itemId[i]).innerHTML = str;
 			itemDisplay(i);
 		}
 
-	// ___________SUBTOTAL PRICE____________
+	// ___________SUBTOTAL PRICE calculate and print____________
 		subTotal= 0;
 		for (i=0; i<itemtotal.length; i++){
 			subTotal+= itemtotal[i];
 		} 
 		document.getElementById("subTotal").innerHTML = "Subtotal: _______" +subTotal+"€";
 
-	// ___________SHIPPING PRICE____________
+	// ___________SHIPPING PRICE calculate and print____________
 		shipping= 0;
 		for (i=0; i<price.length; i++){
 			if (price[i]>80) {
@@ -115,11 +113,11 @@
 		}
 		document.getElementById("shipping").innerHTML = "Shipping: ______" +shipping+"€";
 
-	// ___________TAX PRICE____________
+	// ___________TAX PRICE calculate and print____________
 		tax= parseInt((subTotal+shipping)*0.22);
 		document.getElementById("tax").innerHTML = "Tax: __________" +tax+"€";
 
-	// ___________DISCOUNT PRICE____________
+	// ___________DISCOUNT PRICE calculate and print____________
 		discount= 0;
 		var filler= subTotal+shipping+tax;
 		if (filler<40){
@@ -135,12 +133,12 @@
 			document.getElementById("discount").innerHTML = "Discount 15%: ___" +discount+"€";
 		}
 
-	// ___________TOTAL PRICE____________
+	// ___________TOTAL PRICE calculate and print____________
 		total= subTotal+ shipping+ tax- discount;
 		document.getElementById("total").innerHTML = "Total: _________" +total+"€";
 	}
 
-// _______	SHOW ITEMS  (gets called from "reCalc" total for each item)__________
+// _______	SHOW / HIDE ITEMS  (gets called from "reCalc" total for each item)__________
 	function itemDisplay(x){
 		if (countPrice[x]<= 0){
 			document.getElementById(itemConId[x]).style.display="none";
@@ -149,7 +147,7 @@
 		}
 	}
 
-// ________SHOW CART______
+// ________SHOW / HIDE CART______
 	function display(){
 		var toggleView = document.getElementById("cart").style.display;
 			if (toggleView == "none"){
